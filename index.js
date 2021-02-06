@@ -1,30 +1,43 @@
 const express = require("express");
+const app = express();
+const cors = require("cors");
+const pool = require("./db");
+const path = require("path")
+const multer = require("multer");
+const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const cors = require("cors");
-const multer = require("multer");
-const { sequelize } = require("./models/index");
 
-const app = express();
+const PORT =  process.env.PORT || 3002
 
-const port = process.env.PG_PORT || 3001;
+// Middleware
 
-app.name = "API";
-
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-    limit: "50mb",
-  })
-);
-app.use(
-  bodyParser.json({
-    limit: "50mb",
-  })
-);
-
+//app.use(cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  if ("OPTIONS" == req.method) {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+app.use(express.json());
+app.use("/imagenes", express.static("imagenes"));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cookieParser("secretcode"));
 app.use(morgan("dev"));
-app.use(cors());
+
+if (process.env.NODE_ENV === "production") {
+  console.log("en produccion")
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 // Routes
 
@@ -110,13 +123,10 @@ app.get("/items", async (req, res) => {
 
 // Obtener items por búsqueda
 
-app.get("/search", async (req, res) => {
+app.get("/search", async(req, res) => {
   try {
     const valor = req.query.query.toLowerCase();
-    const items = await pool.query(
-      "SELECT * FROM item WHERE LOWER(name) LIKE '%' || $1 || '%' OR LOWER(description) LIKE '%' || $1 || '%' ORDER BY item_id",
-      [valor]
-    );
+    const items = await pool.query("SELECT * FROM item WHERE LOWER(name) LIKE '%' || $1 || '%' OR LOWER(description) LIKE '%' || $1 || '%' ORDER BY item_id", [valor]);
     res.send(items.rows);
   } catch (err) {
     console.error(err.message);
@@ -125,13 +135,10 @@ app.get("/search", async (req, res) => {
 
 // Obtener items por categoría
 
-app.get("/catfilter", async (req, res) => {
+app.get("/catfilter", async(req, res) => {
   try {
     const valor = req.query.query;
-    const items = await pool.query(
-      "SELECT * FROM item WHERE category_id = $1 ORDER BY item_id",
-      [valor]
-    );
+    const items = await pool.query("SELECT * FROM item WHERE category_id = $1 ORDER BY item_id", [valor]);
     res.send(items.rows);
   } catch (err) {
     console.error(err.message);
@@ -192,7 +199,7 @@ app.delete("/item/:id", async (req, res) => {
     const deleteItem = await pool.query("DELETE FROM item WHERE item_id = $1", [
       id,
     ]);
-    res.json("El producto fue eliminado con exito");
+    res.json('El producto fue eliminado con exito');
   } catch (err) {
     console.error(err.message);
   }
@@ -200,56 +207,52 @@ app.delete("/item/:id", async (req, res) => {
 
 // Autenticacion
 
-app.post("/auth", async (req, res) => {
-  const pass = await pool.query(
-    "SELECT ps_code FROM password_admins WHERE ps_code = $1",
-    [req.body.password]
-  );
-  if (pass.rows[0]) {
+app.post("/auth", async(req, res) => {
+  const pass = await pool.query("SELECT ps_code FROM password_admin WHERE ps_code = $1", [req.body.password]);
+  if(pass.rows[0]){
     res.json("Autenticacion exitosa");
   } else {
     res.json("Contraseña incorrecta");
   }
-});
+})
 
-// CATEGORIAS
+// CATEGORIAS 
 
 // Obtener categorias
 
-app.get("/categories", async (req, res) => {
+app.get('/categories', async(req, res) => {
   try {
     const allCategories = await pool.query("SELECT * FROM category");
     res.json(allCategories.rows);
   } catch (err) {
     console.error(err.message);
   }
-});
+})
 
 // Crear categorías
 
-app.post("/categories", async (req, res) => {
-  try {
-    const { name } = req.body;
-    const newCategory = await pool.query(
-      "INSERT INTO category (name) VALUES($1) RETURNING * ",
-      [name]
-    );
-    res.json(newCategory.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+app.post('/categories', async(req, res) => {
+    try {
+      const { name} = req.body;
+      const newCategory = await pool.query(
+        "INSERT INTO category (name) VALUES($1) RETURNING * ",
+        [name]
+      );
+      res.json(newCategory.rows[0]);
+    } catch (err) {
+      console.error(err.message);
+    }
+})
 
 // Eliminar una categoria
 
 app.delete("/category/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteCategory = await pool.query(
-      "DELETE FROM category WHERE category_id = $1",
-      [id]
-    );
-    res.json("La categoria fue eliminada con exito");
+    const deleteCategory = await pool.query("DELETE FROM category WHERE category_id = $1", [
+      id,
+    ]);
+    res.json('La categoria fue eliminada con exito');
   } catch (err) {
     console.error(err.message);
   }
@@ -257,68 +260,59 @@ app.delete("/category/:id", async (req, res) => {
 
 // Editar una categoría
 
-app.put("/category/:id", async (req, res) => {
+app.put("/category/:id", async(req,res) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
-    const updateCat = await pool.query(
-      "UPDATE category SET name = $1 WHERE category_id = $2",
-      [name, id]
-    );
-    if (updateCat) {
+    const updateCat = await pool.query("UPDATE category SET name = $1 WHERE category_id = $2", [name, id]);
+    if(updateCat){
       res.send("La categoría fue actualizada con éxito");
     }
   } catch (err) {
     console.log(err.message);
   }
-});
+})
 
 // COMMENTS
 
 // Obtener todos los comentarios de un producto
 
-app.get("/product/:id/comments", async (req, res) => {
+app.get('/product/:id/comments', async(req,res) => {
   try {
     const pId = req.params.id;
-    const productComments = await pool.query(
-      "SELECT * FROM item_comment WHERE id_item = $1",
-      [pId]
-    );
+    const productComments = await pool.query("SELECT * FROM item_comment WHERE id_item = $1", [pId]);
     res.send(productComments.rows);
   } catch (err) {
     console.error(err.message);
   }
-});
+})
 
 // Crear un comentario
 
-app.post("/products/comments", async (req, res) => {
+app.post('/products/comments', async(req, res) => {
   try {
-    const { person, title, description, id_item } = req.body;
-    const newComment = await pool.query(
-      "INSERT INTO item_comment(person, title, description, id_item) VALUES($1, $2, $3, $4) RETURNING *",
-      [person, title, description, id_item]
-    );
+    const {person, title, description, id_item} = req.body
+    const newComment = await pool.query("INSERT INTO item_comment(person, title, description, id_item) VALUES($1, $2, $3, $4) RETURNING *", [
+      person, title, description, id_item
+    ]);
     res.send(newComment);
   } catch (err) {
     console.error(err.message);
   }
-});
+  
+})
 
 // Borrar un comentario
 
-app.delete("/products/comment/:id", async (req, res) => {
+app.delete('/products/comment/:id', async(req, res) => {
   try {
     const { id } = req.params;
-    const deleteComment = await pool.query(
-      "DELETE FROM item_comment WHERE item_comment_id = $1",
-      [Number(id)]
-    );
+    const deleteComment = await pool.query("DELETE FROM item_comment WHERE item_comment_id = $1", [Number(id)]);
     res.send("El comentario fue eliminado con éxito");
   } catch (err) {
     console.error(err.message);
   }
-});
+})
 
 // UPLOAD
 
@@ -355,11 +349,10 @@ app.post("/product/upload", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build/index.html"));
-});
+  res.sendFile(path.join(__dirname, "client/build/index.html"))
+})
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(port, () => {
-    console.log("%s listening at", port); // eslint-disable-line no-console
-  });
+// Inicializacion
+app.listen(PORT, () => {
+  console.log(`El servidor se encuentra corriendo en el puerto ${PORT}`);
 });
