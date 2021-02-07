@@ -18,11 +18,10 @@ export default function AdminAddCategory() {
   return (
     <div className={cComponent.products} ng-app="app" ng-controller="AppCtrl">
       <Link to="/admin/categories/add">
-            <button className={cComponent.buttonNew}>Nueva Categoria</button>
-          </Link>
+        <button className={cComponent.buttonNew}>Nueva Categoria</button>
+      </Link>
       <md-content layout-padding>
         <div className={cComponent.actionpane}>
-          
           <center>
             <h2>Categorías</h2>
           </center>

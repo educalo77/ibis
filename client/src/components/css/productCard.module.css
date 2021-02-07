@@ -1,7 +1,7 @@
 .card {
   width: 250px;
   height: 350px;
-  background:whitesmoke;
+  background: whitesmoke;
   border-radius: 3px;
   transition: box-shadow 0.5s;
   box-shadow: 0.5px 0.5px 0.5px 0.5px rgb(37, 37, 37);

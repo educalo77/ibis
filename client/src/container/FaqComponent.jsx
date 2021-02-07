@@ -1,16 +1,7 @@
-import React from 'react';
-
+import React from "react";
 
 function FaqComponent() {
-
-
-
-
-    return (
-        <>
-    
-        </>
-    )
+  return <></>;
 }
 
-export default FaqComponent
+export default FaqComponent;

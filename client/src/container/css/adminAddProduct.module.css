@@ -24,7 +24,7 @@
   padding-top: 6px;
 }
 .buttonNew {
-  background:#d793f7;
+  background: #d793f7;
   border-style: none;
   border-radius: 10px;
   color: white;
@@ -64,7 +64,7 @@
   border-radius: 5px;
   box-shadow: 0.3px 0.3px 1px black;
 }
-@media(max-width: 770px) {
+@media (max-width: 770px) {
   .products {
     font-size: small;
   }
@@ -73,7 +73,7 @@
     font-size: small;
   }
 }
-@media(max-width: 490px) {
+@media (max-width: 490px) {
   .products {
     font-size: x-small;
   }
@@ -84,7 +84,7 @@
     font-size: small;
   }
 }
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .editar {
     font-size: x-small;
     height: 25px;

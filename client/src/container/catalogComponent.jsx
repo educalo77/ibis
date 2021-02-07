@@ -27,7 +27,7 @@ function CatalogComponent() {
         products.map((product) => {
           return (
             <div key={product.item_id} className={cComponent.pCard}>
-                <ProductCard producto={product} />
+              <ProductCard producto={product} />
             </div>
           );
         })

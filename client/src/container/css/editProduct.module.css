@@ -87,27 +87,27 @@
   margin-left: 70px;
   margin-bottom: 20px;
 }
-@media(max-width: 930px) {
+@media (max-width: 930px) {
   .form {
     margin-left: 15%;
   }
 }
-@media(max-width: 870px) {
+@media (max-width: 870px) {
   .form {
     margin-left: 12%;
   }
 }
-@media(max-width: 845px) {
+@media (max-width: 845px) {
   .form {
     margin-left: 8%;
   }
 }
-@media(max-width: 810px) {
+@media (max-width: 810px) {
   .form {
     margin-left: 0;
   }
 }
-@media(max-width: 750px) {
+@media (max-width: 750px) {
   .container {
     flex-direction: column;
   }
@@ -117,10 +117,10 @@
     margin-bottom: 50px;
   }
 }
-@media(max-width: 550px) {
+@media (max-width: 550px) {
   .form {
-  font-size: small;  
-  flex-direction: column;
-  height: 100%;
-}
+    font-size: small;
+    flex-direction: column;
+    height: 100%;
+  }
 }

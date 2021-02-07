@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editProduct } from "../Redux/Products/Actions/productActions";
 import { listCategory } from "../Redux/Categories/Actions/categoryActions";
-import FileUpload from "../components/utils/FileUpload";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Select from "react-select";
 
@@ -75,7 +74,14 @@ export default function EditProduct(props) {
         <div className={cComponent.upload}>
           <h3>Modificar Producto</h3>
           {/* <FileUpload refreshFunction={UpdateImages} /> */}
-          <input placeholder='Url de la Imagen' value={productInput.img} onChange={handleProductInputChange} type="text" name="img" id="img"/>
+          <input
+            placeholder="Url de la Imagen"
+            value={productInput.img}
+            onChange={handleProductInputChange}
+            type="text"
+            name="img"
+            id="img"
+          />
         </div>
         <form className={cComponent.form} onSubmit={handleSubmit}>
           <div className={cComponent.name}>
@@ -99,7 +105,11 @@ export default function EditProduct(props) {
             ) : categories.length > 0 ? (
               <Select
                 defaultValue={{
-                  label: categories && categories.filter((cat) => cat.category_id === productInput.category_id)[0]?.name,
+                  label:
+                    categories &&
+                    categories.filter(
+                      (cat) => cat.category_id === productInput.category_id
+                    )[0]?.name,
                   value: productInput.category_id,
                 }}
                 onChange={handleCategoryInputChange}

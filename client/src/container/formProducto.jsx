@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import cComponent from "./css/formproducto.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import FileUpload from "../components/utils/FileUpload";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Select from "react-select";
 
@@ -32,22 +31,22 @@ export default function FormProducto() {
   const handleCategoryInputChange = function (e) {
     setInput({
       ...input,
-      category_id: categories.filter((cat)=> {
-        return cat.name === e.value
+      category_id: categories.filter((cat) => {
+        return cat.name === e.value;
       })[0].category_id,
     });
   };
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    console.log(input.category_id)
+    console.log(input.category_id);
     axios
       .post("/items", {
         name: `${input.name}`,
         description: `${input.description}`,
         category_id: `${input.category_id}`,
         price: `${input.price}`,
-        img: `${input.img}`,//`${image.img}` ,
+        img: `${input.img}`, //`${image.img}` ,
         stock: `${input.stock}`,
       })
       .then((data) => {
@@ -78,8 +77,15 @@ export default function FormProducto() {
         </div>
         <div className={cComponent.upload}>
           <h3>Añadir Producto</h3>
-           {/* <FileUpload refreshFunction={UpdateImages} />  */}
-           <input placeholder='Url de la Imagen' value={input.img} onChange={handleInputChange} type="text" name="img" id="img"/>
+          {/* <FileUpload refreshFunction={UpdateImages} />  */}
+          <input
+            placeholder="Url de la Imagen"
+            value={input.img}
+            onChange={handleInputChange}
+            type="text"
+            name="img"
+            id="img"
+          />
         </div>
         <form className={cComponent.form} onSubmit={handleSubmit}>
           <div className={cComponent.name}>

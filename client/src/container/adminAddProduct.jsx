@@ -29,7 +29,9 @@ export default function AdminAddProduct() {
         </div>
 
         <div className="tables">
-          <table className={`${cComponent.tabla} table-responsive mx-auto table-striped table-bordered table-hover table-checkable order-column dataTable`}>
+          <table
+            className={`${cComponent.tabla} table-responsive mx-auto table-striped table-bordered table-hover table-checkable order-column dataTable`}
+          >
             <thead>
               <tr>
                 <th>ID</th>
@@ -54,7 +56,7 @@ export default function AdminAddProduct() {
                       params: pId,
                     })
                     .then((res) => {
-                      return(res);
+                      return res;
                     });
                 };
                 return (
@@ -63,7 +65,12 @@ export default function AdminAddProduct() {
                     <td>
                       <span className={cComponent.name}>{product.name}</span>
                     </td>
-                    <td>{categories && categories.filter((cat) => cat.category_id === product.category_id)[0]?.name}</td>
+                    <td>
+                      {categories &&
+                        categories.filter(
+                          (cat) => cat.category_id === product.category_id
+                        )[0]?.name}
+                    </td>
                     <td>{product.price}</td>
                     <td>{product.stock}</td>
                     <td>

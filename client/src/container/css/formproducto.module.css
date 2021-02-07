@@ -88,27 +88,27 @@
   margin-left: 70px;
   margin-bottom: 20px;
 }
-@media(max-width: 1015px) {
+@media (max-width: 1015px) {
   .form {
     margin-left: 15%;
   }
 }
-@media(max-width: 920px) {
+@media (max-width: 920px) {
   .form {
     margin-left: 12%;
   }
 }
-@media(max-width: 890px) {
+@media (max-width: 890px) {
   .form {
     margin-left: 8%;
   }
 }
-@media(max-width: 850px) {
+@media (max-width: 850px) {
   .form {
     margin-left: 0;
   }
 }
-@media(max-width: 795px) {
+@media (max-width: 795px) {
   .container {
     flex-direction: column;
   }
@@ -118,10 +118,10 @@
     margin-bottom: 50px;
   }
 }
-@media(max-width: 565px) {
+@media (max-width: 565px) {
   .form {
-  font-size: small;  
-  flex-direction: column;
-  height: 100%;
-}
+    font-size: small;
+    flex-direction: column;
+    height: 100%;
+  }
 }

@@ -24,7 +24,6 @@
   flex-direction: row;
   padding: 0 2% 2% 2%;
   justify-content: space-between;
-  
 }
 .cardImage {
   width: 300px;
@@ -70,7 +69,7 @@
 }
 .cardDesc {
   display: flex;
-  width: 90%;  
+  width: 90%;
   margin-bottom: 5%;
   margin-top: 2%;
   font-size: medium;
@@ -159,7 +158,7 @@
   box-shadow: 0.3px 0.3px 1px black;
   margin: 10px;
   font-family: "Lato";
-  padding: 10px
+  padding: 10px;
 }
 .comentario div:first-of-type {
   width: 80%;
@@ -168,12 +167,12 @@
   width: 20%;
 }
 
-@media(max-width: 1060px){
+@media (max-width: 1060px) {
   .cardImage {
     width: 350px;
   }
 }
-@media(max-width: 1000px){
+@media (max-width: 1000px) {
   .create {
     padding: 5px;
   }
@@ -184,10 +183,10 @@
     width: 90%;
   }
   .person input {
-    width: 90%
+    width: 90%;
   }
 }
-@media(max-width: 960px){
+@media (max-width: 960px) {
   .cardImage {
     margin: 3% 5% 3% 7%;
   }
@@ -195,12 +194,12 @@
     margin-right: 3%;
   }
 }
-@media(max-width: 925px){
+@media (max-width: 925px) {
   .cardPrice {
     font-size: medium;
   }
 }
-@media(max-width: 890px){
+@media (max-width: 890px) {
   .cardDesc {
     font-size: small;
   }
@@ -218,7 +217,7 @@
     font-size: small;
   }
 }
-@media(max-width: 890px) {
+@media (max-width: 890px) {
   .cardImage {
     width: 220px;
   }
@@ -226,12 +225,12 @@
     font-size: medium;
   }
 }
-@media(max-width: 780px) {
+@media (max-width: 780px) {
   .cardImage {
     width: 190px;
   }
 }
-@media(max-width: 715px) {
+@media (max-width: 715px) {
   .cardDesc {
     font-size: small;
     width: 100%;
@@ -256,22 +255,22 @@
     width: 20%;
   }
 }
-@media(max-width: 510px) {
+@media (max-width: 510px) {
   .cardImage {
     width: 400px;
   }
 }
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .cardImage {
     width: 350px;
   }
 }
-@media(max-width: 410px) {
+@media (max-width: 410px) {
   .cardImage {
     width: 330px;
   }
 }
-@media(max-width: 370px) {
+@media (max-width: 370px) {
   .cardImage {
     width: 300px;
   }

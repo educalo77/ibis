@@ -14,37 +14,33 @@ export default function SearchBarComponent() {
     e.preventDefault();
     setEstado({ ...estado, search: e.target.value });
     dispatch(listProduct(estado.search));
-
   };
 
   const handleSubmit = () => {
-   window.location = "/?#catalog";
+    window.location = "/?#catalog";
     return (e) => {
       e.preventDefault();
 
-    dispatch(listProduct());
-
-    }
+      dispatch(listProduct());
+    };
   };
 
-
-
   return (
-    <div className={sBar.main} >
+    <div className={sBar.main}>
       <form onSubmit={handleSubmit}>
-      <div className={sBar.search_box}>
-           <input
-             className={sBar.search}
-             type="text"
-             placeholder="Buscar producto..."
-             value={estado.search}
-             onChange={handleInputChange}
-        ></input>
+        <div className={sBar.search_box}>
+          <input
+            className={sBar.search}
+            type="text"
+            placeholder="Buscar producto..."
+            value={estado.search}
+            onChange={handleInputChange}
+          ></input>
           <button type="submit">
-             <SearchIcon />
+            <SearchIcon />
           </button>
         </div>
-        </form>
+      </form>
     </div>
   );
 }
