@@ -11,7 +11,7 @@ function Carousel() {
       img: "http://imgfz.com/i/WiVoD0m.jpeg",
     },
     {
-      img: "http://imgfz.com/i/SMws1Oz.jpeg",
+      img: "http://imgfz.com/i/OjpvTaL.jpeg",
     },
     {
       img: "http://imgfz.com/i/tkMZeHB.jpeg",
