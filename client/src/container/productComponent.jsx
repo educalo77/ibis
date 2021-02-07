@@ -156,11 +156,7 @@ function ProductComponent(props) {
                   <span>$ {productDet.price}</span>
                 </div>
                 {productDet.stock > 0 && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://wa.link/u096wf"
-                  >
+                  <a href="https://wa.me/5491134748996/?text=Quisiera%20consultar%20sobre%20los%20productos">
                     <button className={` ${cComponent.addcart}`}>
                       Comprar
                     </button>

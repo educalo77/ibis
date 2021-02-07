@@ -25,4 +25,8 @@
     flex-wrap: wrap;
     margin-top: 2%;
   }
+  .pCard {
+    margin: auto;
+    padding: 0 0 15px 15px;
+  }
 }

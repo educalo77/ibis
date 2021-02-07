@@ -16,6 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Grandstander:wght@300&family=Lato&family=Lobster&family=Oswald:wght@300&family=Roboto:wght@300&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/400191104c.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div id="root"></div>
@@ -34,5 +35,12 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script>
+    <script>
+      $(document).ready(function(){
+	$('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function(){
+		$(this).toggleClass('open');
+	});
+});
+    </script>
   </body>
 </html>

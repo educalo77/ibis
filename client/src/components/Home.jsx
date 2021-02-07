@@ -3,7 +3,7 @@ import CatalogComponent from "../container/catalogComponent";
 import Carousel from "../container/Carousel";
 import home from "./css/home.module.css";
 import FaqComponent from "../container/FaqComponent";
-import Footer from "../components/Footer";
+import Contactanos from "../components/Contactanos";
 
 function Home() {
   window.scroll({
@@ -27,7 +27,9 @@ function Home() {
         <section id="faq">
           <FaqComponent />
         </section>
-        <Footer />
+        <section id="contactanos">
+          <Contactanos />
+        </section>
       </div>
     </div>
   );

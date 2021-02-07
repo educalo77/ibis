@@ -11,10 +11,16 @@ class Navbar extends React.Component {
         <a href="#catalog" className={navbar.navbar_a}>
           Catalogo
         </a>
-        <a href="/#faq" className={navbar.navbar_a}>
+        <a href="#faq" className={navbar.navbar_ac}>
           Preguntas frecuentes
         </a>
-        <a href="/" className={`${navbar.navbar_a} ${navbar.ultimo}`}>
+        <a href="#faq" className={navbar.navbar_ab}>
+          FAQ
+        </a>
+        <a
+          href="#contactanos"
+          className={`${navbar.navbar_a} ${navbar.ultimo}`}
+        >
           Contacto
         </a>
       </div>
@@ -23,4 +29,3 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
-

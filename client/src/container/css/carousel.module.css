@@ -6,3 +6,11 @@
   height: 450px;
   margin-left: 21%;
 }
+
+@media (max-width: 600px) {
+  .image {
+    padding-top: 50px;
+    height: 450px;
+    margin-left: auto;
+  }
+}
