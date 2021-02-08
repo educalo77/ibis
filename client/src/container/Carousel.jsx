@@ -5,6 +5,9 @@ import carousel from "./css/carousel.module.css";
 function Carousel() {
   const products = [
     {
+      img: "http://imgfz.com/i/K9lcetp.png",
+    },
+    {
       img: "http://imgfz.com/i/Rb8lpKS.jpeg",
     },
     {

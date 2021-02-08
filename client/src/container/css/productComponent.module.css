@@ -77,26 +77,31 @@
   font-family: Roboto-Medium;
 }
 .addcart {
-  border-style: none;
-  margin: 5% 0 0 7%;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  cursor: pointer !important;
+  z-index: 1;
+}
+.addcart a:hover {
+  background-color: green;
+}
+
+.addcart a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #d793f7;
   border-radius: 10px;
-  width: 90%;
   box-shadow: 0.3px 0.3px 1px rgb(68, 68, 68);
   color: white;
   font-family: Roboto-Medium;
+  font-size: large;
+  text-decoration: none;
+  transition: all 1s;
 }
-.addreview {
-  border-style: none;
-  margin: 5% 0 0 7%;
-  background: #fdefc8;
-  border-radius: 10px;
-  width: 100%;
-  font-size: medium;
-  box-shadow: 0.3px 0.3px 2px rgb(0, 0, 0);
-  color: rgb(48, 47, 47);
-  font-family: Roboto-Medium;
-}
+
 .stcolumn {
   display: flex;
   flex-direction: row;
@@ -108,9 +113,7 @@
   margin-right: 5%;
   justify-content: center;
 }
-.comments {
-  width: 100%;
-}
+
 .box {
   height: 110%;
   padding: 10px;
@@ -118,74 +121,13 @@
   border-radius: 10px;
   background: #3a0353;
 }
-.create {
-  height: 80px;
-  box-shadow: 0.3px 0.3px 1px black;
-  border-radius: 10px;
-  background: #fffedd;
-}
-.formContent {
-  padding-top: 3px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.commentInput {
-  width: 100%;
-}
-.comment {
-  display: flex;
-  flex-direction: column;
-}
-.person {
-  display: flex;
-  flex-direction: column;
-}
-.cuerpoComentario {
-  display: flex;
-  flex-direction: column;
-  align-content: space-around;
-  align-items: center;
-}
-.cuerpoComentario p {
-  max-width: 450px;
-  word-wrap: break-word;
-}
-.comentario {
-  display: flex;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0.3px 0.3px 1px black;
-  margin: 10px;
-  font-family: "Lato";
-  padding: 10px;
-}
-.comentario div:first-of-type {
-  width: 80%;
-}
-.comentario div:last-of-type {
-  width: 20%;
-}
 
 @media (max-width: 1060px) {
   .cardImage {
     width: 350px;
   }
 }
-@media (max-width: 1000px) {
-  .create {
-    padding: 5px;
-  }
-  .comment {
-    width: 150px;
-  }
-  .comment input {
-    width: 90%;
-  }
-  .person input {
-    width: 90%;
-  }
-}
+
 @media (max-width: 960px) {
   .cardImage {
     margin: 3% 5% 3% 7%;
@@ -210,9 +152,7 @@
   .cardDet {
     font-size: medium;
   }
-  .addreview {
-    font-size: small;
-  }
+
   .addcart {
     font-size: small;
   }
@@ -248,9 +188,7 @@
   .cards {
     flex-direction: column;
   }
-  .addreview {
-    width: 20%;
-  }
+
   .addcart {
     width: 20%;
   }
